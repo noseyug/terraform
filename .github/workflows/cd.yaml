@@ -6,8 +6,12 @@ on:
 
   workflow_dispatch:
 
+permissions:
+    contents: read
+    id-token: write
+
 jobs:
-  build:
+  cd:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
