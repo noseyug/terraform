@@ -23,6 +23,10 @@ jobs:
           with:
             role-to-assume: ${{ vars.AWS_ROLE_ARN}}
             aws-region: ${{ vars.AWS_REGION}}
+            audience: sts.amazonaws.com
+
+        - name: Verify AWS identity
+          run: aws sts get-caller-identity
 
         - name: Terraform format check
           run: terraform fmt -check -recusive
