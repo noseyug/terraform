@@ -1,0 +1,32 @@
+# Terraform working directory
+**/.terraform/*
+
+# State files
+*.tfstate
+*.tfstate.*
+
+# Plan files
+*.tfplan
+tfplan
+
+# Variable files có thể chứa dữ liệu nhạy cảm
+*.tfvars
+*.tfvars.json
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Crash logs
+crash.log
+crash.*.log
+
+# CLI configuration
+.terraformrc
+terraform.rc.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
