@@ -1,0 +1,37 @@
+name: Pull requests check pipeline
+
+on: 
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Setup Terraform
+          uses: actions/setup-terraform@v3
+          with:
+            terraform_version: "1.10.0"
+        - name: Configure AWS credentials
+          uses: actions/configure-aws-credentials@v5
+          with:
+            role-to-assume: ${{ vars.AWS_ROLE_ARN}}
+            aws-region: ${{ vars.AWS_REGION}}
+
+        - name: Terraform format check
+          run: terraform fmt -check -recusive
+
+        - name: Terraform init
+          run: terraform init -lockfile=readonly
+          
+        - name: Terraform validate
+          run : terraform validate
+
+        - name: Terraform plan
+          run: terraform plan
+
+    
+
+    
